@@ -1,0 +1,5 @@
+
+
+bun run lint
+bun run db:types
+git add src/types/supabase.ts  # auto-stage generated types if changed
