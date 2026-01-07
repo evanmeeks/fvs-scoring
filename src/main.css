@@ -1,0 +1,224 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-obsidian: #0a0a0b;
+    --color-panel: #121214;
+    --color-border: #27272a;
+    --color-accent: #00ff41;
+    --color-amber: #ffb300;
+    --color-muted: #636363;
+    --ops-black: #0a0a0b;
+    --ops-panel: #121214;
+    --ops-border: #27272a;
+    --ops-accent: #06b6d4;
+    --ops-text: #e4e4e7;
+    --ops-text-dim: #a1a1aa;
+}
+
+body {
+    background-color: var(--color-obsidian);
+    color: var(--ops-text);
+}
+
+.font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+}
+
+/* Custom Scrollbar Hiding */
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Custom Scrollbar */
+/* Custom Scrollbar for that "Terminal" feel */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 0;
+    border: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+}
+
+/* Custom Range Slider */
+.custom-range {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #1f1f1f;
+    border-radius: 2px;
+    outline: none;
+}
+
+.custom-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #00ff41;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.custom-range::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    background: #00ff41;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+/* Scanline Animation */
+@keyframes scanline {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.03), transparent);
+    animation: scanline 8s linear infinite;
+    pointer-events: none;
+    z-index: 50;
+}
+
+/* Ops UI Helpers */
+.scanlines {
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0),
+            rgba(255, 255, 255, 0) 50%,
+            rgba(0, 0, 0, 0.1) 50%,
+            rgba(0, 0, 0, 0.1));
+    background-size: 100% 4px;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    opacity: 0.15;
+}
+
+.glitch-text {
+    text-shadow:
+        0 0 14px rgba(6, 182, 212, 0.45),
+        0 0 2px rgba(255, 255, 255, 0.3);
+    animation: glitch-flicker 3s infinite;
+}
+
+.glitch-text:hover {
+    text-shadow:
+        2px 0 #06b6d4,
+        -2px 0 #ef4444;
+}
+
+@keyframes glitch-flicker {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    48% {
+        opacity: 0.92;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    52% {
+        opacity: 0.98;
+    }
+}
+
+
+
+.tab-active {
+    border-bottom: 2px solid #06b6d4;
+    color: #06b6d4;
+    background: rgba(6, 182, 212, 0.05);
+}
+
+.range-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: #27272a;
+    outline: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #06b6d4;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+    background: #22d3ee;
+}
+
+/* Firefox support for range slider */
+.range-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #06b6d4;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s ease-in-out;
+}
+
+.range-slider::-moz-range-thumb:hover {
+    background: #22d3ee;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
