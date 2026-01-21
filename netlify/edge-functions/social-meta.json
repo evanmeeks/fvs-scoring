@@ -1,0 +1,6 @@
+{
+  "config": {
+    "path": ["/global-consensus/*", "/audit-target/*"],
+    "excludedPath": []
+  }
+}
