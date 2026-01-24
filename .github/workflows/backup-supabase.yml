@@ -1,0 +1,42 @@
+# .github/workflows/backup-supabase.yml
+name: Daily Supabase Snapshot
+
+on:
+    schedule:
+        - cron: "0 3 * * *" # 3 AM UTC
+    workflow_dispatch:
+
+jobs:
+    backup:
+        runs-on: ubuntu-latest
+        env:
+            SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        steps:
+            - uses: actions/checkout@v4
+            - name: Install Supabase CLI
+              uses: supabase/setup-cli@v1
+              with:
+                  version: latest
+            - name: Create timestamp
+              id: timestamp
+              run: echo "TS=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
+            - name: Dump full DB
+              run: supabase db dump --db-url "$SUPABASE_DB_URL" --use-copy -f backup-full-${{ steps.timestamp.outputs.TS }}.sql
+            - name: Create manifest
+              run: |
+                  cat <<EOF > manifest.json
+                  {
+                    "timestamp": "${{ steps.timestamp.outputs.TS }}",
+                    "commit": "$(git rev-parse HEAD)",
+                    "branch": "$(git rev-parse --abbrev-ref HEAD)"
+                  }
+                  EOF
+            - name: Archive
+              run: |
+                  tar -cf snapshot.tar manifest.json backup-*.sql
+                  zstd -19 snapshot.tar -o qdd-snapshot-${{ steps.timestamp.outputs.TS }}.tar.zst
+            - uses: actions/upload-artifact@v4
+              with:
+                  name: snapshot-${{ steps.timestamp.outputs.TS }}
+                  path: qdd-snapshot-*.tar.zst
+                  retention-days: 30
