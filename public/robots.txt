@@ -1,0 +1,40 @@
+# FVS Scoring System - Robots Policy
+# Public pages are indexable; private/admin pages are blocked
+# Last updated: 2026-01-20
+
+User-agent: *
+
+# Public pages (indexable)
+Allow: /
+Allow: /manifesto
+Allow: /scorecard
+Allow: /scoring/
+Allow: /audit-target/
+Allow: /global-consensus/
+Allow: /submissions/target/
+Allow: /submissions/rfc/
+
+# Private pages (no indexing)
+Disallow: /my/
+Disallow: /admin/
+Disallow: /contributors/
+Disallow: /governance
+Disallow: /governance/
+Disallow: /review
+Disallow: /review/
+Disallow: /login
+Disallow: /logout
+
+# Assets (allow crawling)
+Allow: /assets/
+Allow: /*.js
+Allow: /*.css
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.ico
+
+# Sitemap
+Sitemap: https://fvs-scoring.netlify.app/sitemap.xml
