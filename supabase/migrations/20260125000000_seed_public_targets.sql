@@ -1,172 +1,172 @@
--- Seed public targets from prototype UI (ScoreCardVewPublicGlobalAudtCards.html)
--- Adds unaudited targets with auto-generated case IDs
+-- Seed public forecast targets for prediction market verification
+-- Adds sample targets with auto-generated case IDs
 -- All entries will have 0 scores initially (no user_scores entries)
 -- Uses slug values for origin and context that match the reference tables
 
 DO $$
 DECLARE
     admin_user_id UUID;
-    sol_foundation_id UUID := gen_random_uuid();
-    grusch_newsnation_id UUID := gen_random_uuid();
-    congress_scif_id UUID := gen_random_uuid();
-    jellyfish_id UUID := gen_random_uuid();
-    nazca_id UUID := gen_random_uuid();
-    miami_id UUID := gen_random_uuid();
-    aaro_id UUID := gen_random_uuid();
-    ilyumzhinov_id UUID := gen_random_uuid();
-    sheehan_id UUID := gen_random_uuid();
+    fed_rate_id UUID := gen_random_uuid();
+    election_2024_id UUID := gen_random_uuid();
+    agi_timeline_id UUID := gen_random_uuid();
+    recession_id UUID := gen_random_uuid();
+    climate_id UUID := gen_random_uuid();
+    spacex_id UUID := gen_random_uuid();
+    bitcoin_id UUID := gen_random_uuid();
+    pandemic_id UUID := gen_random_uuid();
+    fusion_id UUID := gen_random_uuid();
 BEGIN
     -- Get admin user ID for submission attribution
     SELECT user_id INTO admin_user_id FROM user_profiles WHERE role = 'admin' LIMIT 1;
 
-    -- Sol Foundation Symposium 2023 (AUDITED in prototype)
+    -- Federal Reserve Interest Rate Prediction (HIGH QUALITY)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        sol_foundation_id, 'Sol Foundation Symposium 2023', 'academic_institution', 'academic_symposium',
-        'Academic symposium on UAP disclosure hosted by Sol Foundation', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2023-11-01', 'Sol Foundation'
+        fed_rate_id, 'Fed Rate Trajectory 2024', 'academic_institution', 'economic_forecast',
+        'Prediction of Federal Reserve interest rate decisions through 2024', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Verified prediction market data',
+        '2024-01-15', 'Polymarket / Kalshi'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('sol-foundation-2023', sol_foundation_id, 'Sol Foundation Symposium 2023', NULL, 'academic_institution', 'academic_symposium', 'Academic symposium on UAP disclosure hosted by Sol Foundation', '2023-11-01', 'Sol Foundation', true)
+    VALUES ('fed-rate-2024', fed_rate_id, 'Fed Rate Trajectory 2024', NULL, 'academic_institution', 'economic_forecast', 'Prediction of Federal Reserve interest rate decisions through 2024', '2024-01-15', 'Polymarket / Kalshi', true)
     ON CONFLICT (id) DO NOTHING;
 
-    -- David Grusch NewsNation Interview (AUDITED in prototype)
+    -- US Presidential Election 2024 (HIGH QUALITY)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        grusch_newsnation_id, 'David Grusch - NewsNation Interview', 'private_sector_corporate', 'media_broadcast',
-        'NewsNation interview with David Grusch discussing UAP disclosure', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2023-06-11', 'NewsNation'
+        election_2024_id, 'US Presidential Election 2024', 'media_journalist', 'political_forecast',
+        'Aggregated polling and prediction market forecasts for 2024 presidential election', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Multi-source aggregation',
+        '2024-03-01', '538 / Metaculus / PredictIt'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('grusch-newsnation-2023', grusch_newsnation_id, 'David Grusch - NewsNation Interview', NULL, 'private_sector_corporate', 'media_broadcast', 'NewsNation interview with David Grusch discussing UAP disclosure', '2023-06-11', 'NewsNation', true)
+    VALUES ('election-2024', election_2024_id, 'US Presidential Election 2024', NULL, 'media_journalist', 'political_forecast', 'Aggregated polling and prediction market forecasts for 2024 presidential election', '2024-03-01', '538 / Metaculus / PredictIt', true)
     ON CONFLICT (id) DO NOTHING;
 
-    -- Congressional SCIF Briefing (AUDITED in prototype)
+    -- AGI Timeline Forecast (MIXED QUALITY)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        congress_scif_id, 'Congressional SCIF Briefing (Jan)', 'legislative_branch', 'classified_proceeding',
-        'Classified briefing to Congressional members regarding UAP', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2024-01-15', 'US Congress'
+        agi_timeline_id, 'AGI Development Timeline', 'private_commercial', 'technology_forecast',
+        'Expert and market predictions on Artificial General Intelligence development timeline', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Aggregated expert forecasts',
+        '2024-02-20', 'Metaculus / AI Impacts Survey'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('congressional-scif-jan-2024', congress_scif_id, 'Congressional SCIF Briefing (Jan)', NULL, 'legislative_branch', 'classified_proceeding', 'Classified briefing to Congressional members regarding UAP', '2024-01-15', 'US Congress', true)
+    VALUES ('agi-timeline-2024', agi_timeline_id, 'AGI Development Timeline', NULL, 'private_commercial', 'technology_forecast', 'Expert and market predictions on Artificial General Intelligence development timeline', '2024-02-20', 'Metaculus / AI Impacts Survey', false)
     ON CONFLICT (id) DO NOTHING;
 
-    -- Jellyfish UAP Video (AUDITED in prototype)
+    -- US Recession Probability (HIGH QUALITY)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        jellyfish_id, 'Jellyfish UAP Video Release', 'independent_researcher', 'visual_evidence',
-        'Release of alleged UAP video footage showing jellyfish-like object', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2024-01-10', 'Jeremy Corbell'
+        recession_id, 'US Recession Probability 2024-2025', 'academic_institution', 'economic_forecast',
+        'Economic models and market predictions for US recession probability', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Federal Reserve model data',
+        '2024-01-01', 'NY Fed / Bloomberg Survey'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('jellyfish-uap-jan-2024', jellyfish_id, 'Jellyfish UAP Video Release', NULL, 'independent_researcher', 'visual_evidence', 'Release of alleged UAP video footage showing jellyfish-like object', '2024-01-10', 'Jeremy Corbell', false)
+    VALUES ('recession-2024', recession_id, 'US Recession Probability 2024-2025', NULL, 'academic_institution', 'economic_forecast', 'Economic models and market predictions for US recession probability', '2024-01-01', 'NY Fed / Bloomberg Survey', true)
     ON CONFLICT (id) DO NOTHING;
 
-    -- Nazca Mummies (MIXED/AMBIGUOUS in prototype)
+    -- Climate Temperature Forecast (SCIENTIFIC)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        nazca_id, 'Nazca Mummies (Initial Release)', 'independent_researcher', 'forensic_claim',
-        'Initial public presentation of alleged non-human mummies from Peru', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2023-09-13', 'Jaime Maussan'
+        climate_id, 'Global Temperature Anomaly 2024', 'academic_institution', 'scientific_forecast',
+        'Climate model predictions for 2024 global mean temperature anomaly', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Peer-reviewed climate models',
+        '2024-01-01', 'NOAA / NASA GISS'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('nazca-mummies-2023', nazca_id, 'Nazca Mummies (Initial Release)', NULL, 'independent_researcher', 'forensic_claim', 'Initial public presentation of alleged non-human mummies from Peru', '2023-09-13', 'Jaime Maussan', false)
+    VALUES ('climate-temp-2024', climate_id, 'Global Temperature Anomaly 2024', NULL, 'academic_institution', 'scientific_forecast', 'Climate model predictions for 2024 global mean temperature anomaly', '2024-01-01', 'NOAA / NASA GISS', true)
     ON CONFLICT (id) DO NOTHING;
 
-    -- Miami Mall Incident (OCCUPATION in prototype)
+    -- SpaceX Starship Orbital (TECHNOLOGY)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        miami_id, 'Miami Mall Incident (Social Media)', 'unspecified', 'viral_narrative',
-        'Social media viral narrative regarding alleged incident at Miami mall', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2024-01-03', 'Social Media'
+        spacex_id, 'SpaceX Starship Orbital Success', 'private_commercial', 'technology_forecast',
+        'Predictions on SpaceX Starship achieving successful orbital flight', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Industry analyst predictions',
+        '2024-02-01', 'Metaculus / Space Industry Analysts'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('miami-mall-jan-2024', miami_id, 'Miami Mall Incident (Social Media)', NULL, 'unspecified', 'viral_narrative', 'Social media viral narrative regarding alleged incident at Miami mall', '2024-01-03', 'Social Media', false)
+    VALUES ('spacex-orbital-2024', spacex_id, 'SpaceX Starship Orbital Success', NULL, 'private_commercial', 'technology_forecast', 'Predictions on SpaceX Starship achieving successful orbital flight', '2024-02-01', 'Metaculus / Space Industry Analysts', false)
     ON CONFLICT (id) DO NOTHING;
 
-    -- AARO Historical Report (OCCUPATION in prototype)
+    -- Bitcoin Price Prediction (FINANCIAL)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        aaro_id, 'AARO Historical Report Vol 1', 'dod_joint', 'government_report',
-        'All-domain Anomaly Resolution Office historical report volume 1', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2024-02-29', 'AARO/DoD'
+        bitcoin_id, 'Bitcoin Price EOY 2024', 'private_commercial', 'financial_forecast',
+        'Market predictions for Bitcoin price at end of 2024', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Aggregated market predictions',
+        '2024-01-01', 'Polymarket / Crypto Analysts'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('aaro-report-vol1-2024', aaro_id, 'AARO Historical Report Vol 1', NULL, 'dod_joint', 'government_report', 'All-domain Anomaly Resolution Office historical report volume 1', '2024-02-29', 'AARO/DoD', true)
+    VALUES ('bitcoin-eoy-2024', bitcoin_id, 'Bitcoin Price EOY 2024', NULL, 'private_commercial', 'financial_forecast', 'Market predictions for Bitcoin price at end of 2024', '2024-01-01', 'Polymarket / Crypto Analysts', false)
     ON CONFLICT (id) DO NOTHING;
 
-    -- Kirsan Ilyumzhinov Interview (PENDING AUDIT in prototype)
+    -- Pandemic Preparedness (PUBLIC HEALTH)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        ilyumzhinov_id, 'Kirsan Ilyumzhinov Interview', 'media_organization', 'witness_testimony',
-        'Interview with former FIDE president regarding alleged UAP encounter', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2023-10-15', 'Various Media'
+        pandemic_id, 'Next Pandemic Timeline', 'academic_institution', 'epidemiological_forecast',
+        'Epidemiological models predicting probability of next pandemic-scale outbreak', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'Academic research aggregation',
+        '2024-01-15', 'Johns Hopkins / Metaculus'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('ilyumzhinov-interview-2023', ilyumzhinov_id, 'Kirsan Ilyumzhinov Interview', NULL, 'media_organization', 'witness_testimony', 'Interview with former FIDE president regarding alleged UAP encounter', '2023-10-15', 'Various Media', false)
+    VALUES ('pandemic-timeline-2024', pandemic_id, 'Next Pandemic Timeline', NULL, 'academic_institution', 'epidemiological_forecast', 'Epidemiological models predicting probability of next pandemic-scale outbreak', '2024-01-15', 'Johns Hopkins / Metaculus', false)
     ON CONFLICT (id) DO NOTHING;
 
-    -- Danny Sheehan Disclosure Project (PENDING AUDIT in prototype)
+    -- Fusion Energy Breakthrough (ENERGY)
     INSERT INTO public.target_submissions (
         id, target_name, origin, context, description, status,
         submitted_by, submitted_at, reviewed_by, reviewed_at, review_notes,
         claim_date, primary_source
     ) VALUES (
-        sheehan_id, 'Danny Sheehan - Disclosure Project', 'ngo_thinktank', 'public_statement',
-        'Public statement and disclosure initiative from attorney Danny Sheehan', 'approved',
-        admin_user_id, NOW(), admin_user_id, NOW(), 'Prototype UI Seed Data',
-        '2023-12-01', 'New Paradigm Institute'
+        fusion_id, 'Commercial Fusion Timeline', 'academic_institution', 'technology_forecast',
+        'Expert predictions on timeline for first commercial fusion power plant', 'approved',
+        admin_user_id, NOW(), admin_user_id, NOW(), 'DOE and industry forecasts',
+        '2024-02-01', 'DOE / Fusion Industry Association'
     );
 
     INSERT INTO public.approved_targets (id, submission_id, name, case_id, origin, context, description, claim_date, primary_source, verified)
-    VALUES ('sheehan-disclosure-2023', sheehan_id, 'Danny Sheehan - Disclosure Project', NULL, 'ngo_thinktank', 'public_statement', 'Public statement and disclosure initiative from attorney Danny Sheehan', '2023-12-01', 'New Paradigm Institute', false)
+    VALUES ('fusion-timeline-2024', fusion_id, 'Commercial Fusion Timeline', NULL, 'academic_institution', 'technology_forecast', 'Expert predictions on timeline for first commercial fusion power plant', '2024-02-01', 'DOE / Fusion Industry Association', false)
     ON CONFLICT (id) DO NOTHING;
 
 END $$;
--- Note: case_id will be auto-generated via trigger using the new format: FVS-ORIGIN-CONTEXT-XXXX
+-- Note: case_id will be auto-generated via trigger using the format: FVS-ORIGIN-CONTEXT-XXXX
 -- Note: No user_scores entries are created - all targets start with 0 scores (unaudited)
 -- Examples of generated case_ids:
---   FVS-ACAD-SYMP-0001 (Sol Foundation)
---   FVS-PRIV-BCAST-0002 (Grusch NewsNation)
---   FVS-CONG-SCIF-0003 (Congressional SCIF);
+--   FVS-ACAD-ECON-0001 (Fed Rate)
+--   FVS-MEDIA-POL-0002 (Election 2024)
+--   FVS-PRIV-TECH-0003 (AGI Timeline);

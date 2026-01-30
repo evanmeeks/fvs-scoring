@@ -1,6 +1,6 @@
 /**
  * Context Types Reference Data
- * Authoritative list of disclosure context types
+ * Authoritative list of forecast context types
  */
 
 export interface ContextType {
@@ -11,30 +11,44 @@ export interface ContextType {
 }
 
 export const CONTEXT_TYPES: ContextType[] = [
+  // Prediction Market Contexts
+  { slug: "prediction_market", label: "Prediction Market", isActive: true, sortOrder: 5 },
+  { slug: "economic_forecast", label: "Economic Forecast", isActive: true, sortOrder: 6 },
+  { slug: "political_forecast", label: "Political Forecast", isActive: true, sortOrder: 7 },
+  { slug: "technology_forecast", label: "Technology Forecast", isActive: true, sortOrder: 8 },
+  { slug: "financial_forecast", label: "Financial Forecast", isActive: true, sortOrder: 9 },
+  { slug: "scientific_forecast", label: "Scientific Forecast", isActive: true, sortOrder: 10 },
+  { slug: "epidemiological_forecast", label: "Epidemiological Forecast", isActive: true, sortOrder: 11 },
+
   // Academic/Research Contexts
-  { slug: "academic_symposium", label: "Academic Symposium", isActive: true, sortOrder: 10 },
-  { slug: "scientific_paper", label: "Scientific Paper", isActive: true, sortOrder: 20 },
-  { slug: "academic_thesis", label: "Academic Thesis", isActive: true, sortOrder: 25 },
-  { slug: "research_grant_proposal", label: "Research Grant Proposal", isActive: true, sortOrder: 27 },
+  { slug: "academic_symposium", label: "Academic Symposium", isActive: true, sortOrder: 20 },
+  { slug: "scientific_paper", label: "Scientific Paper", isActive: true, sortOrder: 30 },
+  { slug: "academic_thesis", label: "Academic Thesis", isActive: true, sortOrder: 35 },
+  { slug: "research_grant_proposal", label: "Research Grant Proposal", isActive: true, sortOrder: 37 },
+  { slug: "expert_survey", label: "Expert Survey", isActive: true, sortOrder: 38 },
+  { slug: "consensus_model", label: "Consensus Model", isActive: true, sortOrder: 39 },
 
   // Media/Broadcast Contexts
-  { slug: "media_broadcast", label: "Media Broadcast", isActive: true, sortOrder: 30 },
-  { slug: "public_statement", label: "Public Statement", isActive: true, sortOrder: 40 },
-  { slug: "documentary_film", label: "Documentary Film", isActive: true, sortOrder: 50 },
-  { slug: "nonfiction_film", label: "Nonfiction Film", isActive: true, sortOrder: 60 },
-  { slug: "fiction_film", label: "Fiction Film", isActive: true, sortOrder: 70 },
+  { slug: "media_broadcast", label: "Media Broadcast", isActive: true, sortOrder: 40 },
+  { slug: "public_statement", label: "Public Statement", isActive: true, sortOrder: 50 },
+  { slug: "analyst_report", label: "Analyst Report", isActive: true, sortOrder: 55 },
   { slug: "podcast_episode", label: "Podcast Episode", isActive: true, sortOrder: 80 },
   { slug: "press_conference", label: "Press Conference", isActive: true, sortOrder: 90 },
   { slug: "book_publication", label: "Book Publication", isActive: true, sortOrder: 100 },
 
   // Government/Official Contexts
   { slug: "government_report", label: "Government Report", isActive: true, sortOrder: 110 },
-  { slug: "classified_proceeding", label: "Classified Proceeding", isActive: true, sortOrder: 120 },
-  { slug: "declassified_document", label: "Declassified Document", isActive: true, sortOrder: 130 },
+  { slug: "central_bank_forecast", label: "Central Bank Forecast", isActive: true, sortOrder: 115 },
+  { slug: "regulatory_filing", label: "Regulatory Filing", isActive: true, sortOrder: 118 },
   { slug: "congressional_hearing", label: "Congressional Hearing", isActive: true, sortOrder: 140 },
   { slug: "press_release", label: "Press Release", isActive: true, sortOrder: 150 },
   { slug: "international_agreement", label: "International Agreement", isActive: true, sortOrder: 160 },
   { slug: "international_statement", label: "International Statement", isActive: true, sortOrder: 170 },
+
+  // Data/Model Contexts
+  { slug: "quantitative_model", label: "Quantitative Model", isActive: true, sortOrder: 175 },
+  { slug: "machine_learning_model", label: "Machine Learning Model", isActive: true, sortOrder: 176 },
+  { slug: "simulation_output", label: "Simulation Output", isActive: true, sortOrder: 177 },
 
   // Legal Contexts
   { slug: "legal_filing", label: "Legal Filing", isActive: true, sortOrder: 180 },
@@ -42,28 +56,18 @@ export const CONTEXT_TYPES: ContextType[] = [
   // Witness/Testimony Contexts
   { slug: "witness_testimony", label: "Witness Testimony", isActive: true, sortOrder: 190 },
   { slug: "whistleblower_account", label: "Whistleblower Account", isActive: true, sortOrder: 200 },
-  { slug: "eyewitness_sketch", label: "Eyewitness Sketch", isActive: true, sortOrder: 205 },
+  { slug: "expert_testimony", label: "Expert Testimony", isActive: true, sortOrder: 205 },
   { slug: "legal_deposition", label: "Legal Deposition", isActive: true, sortOrder: 210 },
 
   // Evidence Contexts
   { slug: "visual_evidence", label: "Visual Evidence", isActive: true, sortOrder: 220 },
-  { slug: "forensic_claim", label: "Forensic Claim", isActive: true, sortOrder: 230 },
-  { slug: "material_sample", label: "Material Sample", isActive: true, sortOrder: 240 },
-  { slug: "archaeological_find", label: "Archaeological Find", isActive: true, sortOrder: 250 },
+  { slug: "data_analysis", label: "Data Analysis", isActive: true, sortOrder: 225 },
 
   // Social Media/Viral Contexts
   { slug: "viral_narrative", label: "Viral Narrative", isActive: true, sortOrder: 260 },
   { slug: "social_media", label: "Social Media", isActive: true, sortOrder: 270 },
   { slug: "social_media_post", label: "Social Media Post", isActive: true, sortOrder: 275 },
-  { slug: "fourchan_leak", label: "4chan Leak", isActive: true, sortOrder: 280 },
-  { slug: "anonymous_forum_leak", label: "Anonymous Forum Leak", isActive: true, sortOrder: 282 },
   { slug: "forum_discussion", label: "Forum Discussion", isActive: true, sortOrder: 285 },
-  { slug: "forum_leak", label: "Forum Leak", isActive: true, sortOrder: 290 },
-
-  // Anonymous/Leaked Contexts
-  { slug: "leaked_media", label: "Leaked Media", isActive: true, sortOrder: 295 },
-  { slug: "hacked_and_leaked", label: "Hacked and Leaked", isActive: true, sortOrder: 297 },
-  { slug: "anon_hack_and_release", label: "Anon Hack and Release", isActive: true, sortOrder: 300 },
 
   // Patent/Technical
   { slug: "patent_application", label: "Patent Application", isActive: true, sortOrder: 310 },
