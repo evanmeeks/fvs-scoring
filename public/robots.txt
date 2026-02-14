@@ -1,4 +1,4 @@
-# FVS Scoring System - Robots Policy
+# Forecast Audit - Robots Policy
 # Public pages are indexable; private/admin pages are blocked
 # Last updated: 2026-01-20
 
@@ -37,4 +37,4 @@ Allow: /*.svg
 Allow: /*.ico
 
 # Sitemap
-Sitemap: https://fvs-scoring.netlify.app/sitemap.xml
+Sitemap: https://forecastaudit.pro/sitemap.xml

@@ -3,8 +3,8 @@
  * Generates consistent OpenGraph and Twitter Card meta tags for all shareable pages
  */
 
-const SITE_NAME = 'FVS Scoring System'
-const DEFAULT_DESCRIPTION = 'Forecast Verification Scoring System — a collaborative framework for evaluating media claims and predictions using key quality metrics.'
+const SITE_NAME = 'Forecast Audit'
+const DEFAULT_DESCRIPTION = 'Forecast Audit — a collaborative framework for evaluating media claims and predictions using key quality metrics.'
 const DEFAULT_IMAGE = '/og-image.png' // Placeholder - replace with actual OG image
 
 /**
@@ -40,11 +40,11 @@ export function createHeadConfig(options: HeadConfigOptions) {
         type = 'website',
         noindex = false,
     } = options;
-    const origin = getOrigin() || 'https://fvs-metrics.com'
+    const origin = getOrigin() || 'https://forecastaudit.pro'
     const fullTitle = `${title} | ${SITE_NAME}`
     const canonicalUrl = origin ? `${origin}${path}` : path
     const imageUrl = image.startsWith('http') ? image : `${origin}${image}`
-    const defaultImageAlt = `${title} - FVS Scoring System`
+    const defaultImageAlt = `${title} - Forecast Audit`
 
     const meta = [
         // Basic meta
@@ -135,23 +135,23 @@ export const PAGE_SEO = {
     },
     scorecard: {
         title: 'Scorecard',
-        description: 'View aggregated FVS scores and community consensus for forecast targets.',
+        description: 'View aggregated scores and community consensus for forecast targets.',
         path: '/scorecard',
     },
     manifesto: {
         title: 'Manifesto',
-        description: 'The FVS Manifesto — principles and methodology behind the Forecast Verification Scoring System.',
+        description: 'The Manifesto — principles and methodology behind Forecast Audit.',
         path: '/manifesto',
     },
     governance: {
         title: 'Governance',
-        description: 'Contributor governance portal for FVS metric proposals and voting.',
+        description: 'Contributor governance portal for metric proposals and voting.',
         path: '/contributors/governance',
         noindex: true, // Contributor-only page
     },
     admin: {
         title: 'Admin',
-        description: 'FVS Administration Panel',
+        description: 'Administration Panel',
         path: '/admin',
         noindex: true, // Admin-only page
     },
@@ -168,7 +168,7 @@ export function generateScorecardOgImageUrl(params: {
     score?: number;
 }): string {
     const origin = getOrigin()
-    const baseUrl = origin || 'https://fvs-metrics.com'
+    const baseUrl = origin || 'https://forecastaudit.pro'
 
     const searchParams = new URLSearchParams({
         targetId: params.targetId,
@@ -193,7 +193,7 @@ export function createScoringHeadConfig(targetId: string) {
         path: `/scoring/${slug}`,
         type: 'article',
         image: `https://placehold.co/1200x630/050505/06b6d4?text=${imageText}&font=roboto`,
-        imageAlt: `FVS Scorecard for ${slug}`
+        imageAlt: `Scorecard for ${slug}`
     })
 }
 
@@ -210,8 +210,8 @@ export function createSharedScorecardHeadConfig(params: {
 }) {
     const title = `${params.targetName} Scorecard`
     const description = params.score
-        ? `FVS Score: ${params.score.toFixed(1)} — ${params.targetName} scored by ${params.userName || 'Anonymous'}`
-        : `View FVS scorecard for ${params.targetName}`
+        ? `Score: ${params.score.toFixed(1)} — ${params.targetName} scored by ${params.userName || 'Anonymous'}`
+        : `View scorecard for ${params.targetName}`
 
     return createHeadConfig({
         title,
@@ -219,7 +219,7 @@ export function createSharedScorecardHeadConfig(params: {
         path: `/share/scorecard/${params.targetId}/${params.userId}`,
         type: 'article',
         image: generateScorecardOgImageUrl(params),
-        imageAlt: `FVS Scorecard: ${params.targetName} - Score ${params.score?.toFixed(1) || 'N/A'}`
+        imageAlt: `Scorecard: ${params.targetName} - Score ${params.score?.toFixed(1) || 'N/A'}`
     })
 }
 
@@ -234,7 +234,7 @@ export function generateTargetOgImageUrl(params: {
     origin?: string;
 }): string {
     const origin = getOrigin()
-    const baseUrl = origin || 'https://fvs-metrics.com'
+    const baseUrl = origin || 'https://forecastaudit.pro'
 
     const searchParams = new URLSearchParams({
         targetName: params.targetName,
@@ -261,7 +261,7 @@ export function createTargetSubmissionHeadConfig(submission?: {
     if (!submission) {
         return createHeadConfig({
             title: 'Target Submission',
-            description: 'View FVS target submission proposal',
+            description: 'View target submission proposal',
             path: '/submissions/target',
             type: 'article',
         })
@@ -298,7 +298,7 @@ export function generateRfcOgImageUrl(params: {
     votesAgainst?: number;
 }): string {
     const origin = getOrigin()
-    const baseUrl = origin || 'https://fvs-metrics.com'
+    const baseUrl = origin || 'https://forecastaudit.pro'
 
     const searchParams = new URLSearchParams({
         title: params.title,
@@ -327,7 +327,7 @@ export function createRFCHeadConfig(rfc?: {
     if (!rfc) {
         return createHeadConfig({
             title: 'RFC Proposal',
-            description: 'View FVS metric RFC proposal and community voting',
+            description: 'View metric RFC proposal and community voting',
             path: '/submissions/rfc',
             type: 'article',
         })
@@ -359,7 +359,7 @@ export function generateGlobalConsensusOgImageUrl(params: {
     totalVotes?: number;
 }): string {
     const origin = getOrigin()
-    const baseUrl = origin || 'https://fvs-metrics.com'
+    const baseUrl = origin || 'https://forecastaudit.pro'
 
     const searchParams = new URLSearchParams({
         targetName: params.targetName,
@@ -388,7 +388,7 @@ export function createGlobalConsensusHeadConfig(params: {
         : `Global Consensus - ${params.slug}`
 
     const description = params.score !== undefined
-        ? `Network consensus reveals forecast patterns across all verified audit nodes. ${params.targetName} - FVS Score: ${params.score}/100`
+        ? `Network consensus reveals forecast patterns across all verified audit nodes. ${params.targetName} - Score: ${params.score}/100`
         : 'Network consensus reveals forecast patterns across all verified audit nodes. View aggregate intelligence and classification distribution.'
 
     const image = params.targetName && params.score !== undefined
@@ -406,7 +406,7 @@ export function createGlobalConsensusHeadConfig(params: {
         type: 'article',
         image,
         imageAlt: params.targetName
-            ? `FVS Global Consensus: ${params.targetName} - Score ${params.score || 'N/A'}/100`
+            ? `Global Consensus: ${params.targetName} - Score ${params.score || 'N/A'}/100`
             : undefined,
     })
 }
@@ -427,8 +427,8 @@ export function createAuditTargetHeadConfig(params: {
         : `Audit Target - ${caseIdDisplay}`
 
     const description = params.targetName
-        ? `Submit forecast audit scores using the FVS 10-metric framework. Evaluate specificity, attribution, actionability, and forecast utility for ${params.targetName}.`
-        : 'Submit forecast audit scores using the FVS 10-metric framework. Evaluate specificity, attribution, actionability, and forecast utility.'
+        ? `Submit forecast audit scores using the 10-metric framework. Evaluate specificity, attribution, actionability, and forecast utility for ${params.targetName}.`
+        : 'Submit forecast audit scores using the 10-metric framework. Evaluate specificity, attribution, actionability, and forecast utility.'
 
     // No OG image in meta tags for audit pages since scores are dynamic
     // ShareButton generates the OG image dynamically when user clicks share

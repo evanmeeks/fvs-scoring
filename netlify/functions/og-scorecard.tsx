@@ -248,7 +248,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
             textTransform: 'uppercase',
           }}
         >
-          FVS-METRICS.COM
+          FORECASTAUDIT.PRO
         </div>
       </div>,
       {

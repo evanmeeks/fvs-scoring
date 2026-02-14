@@ -6,7 +6,7 @@ export const Route = createFileRoute('/contributors')({
     beforeLoad: ({ location }) => ensureContributor(location),
     head: () => createHeadConfig({
         title: 'Contributors',
-        description: 'Contributor portal for FVS Scoring System',
+        description: 'Contributor portal for Forecast Audit',
         path: '/contributors',
         noindex: true,
     }),

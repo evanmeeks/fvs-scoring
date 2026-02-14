@@ -129,7 +129,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
               letterSpacing: "1px",
             }}
           >
-            FVS Metric Governance
+            Forecast Audit Governance
           </div>
         </div>
 
@@ -244,7 +244,7 @@ export const handler: Handler = async (event: HandlerEvent) => {
             color: "#6b7280",
           }}
         >
-          fvs-metrics.com
+          forecastaudit.pro
         </div>
       </div>,
       {

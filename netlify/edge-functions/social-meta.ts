@@ -106,7 +106,7 @@ function generateMetaHTML(config: {
   type?: string;
 }): string {
   const { title, description, url, image, imageAlt, type = 'website' } = config;
-  const siteName = 'FVS Scoring System';
+  const siteName = 'Forecast Audit';
 
   return `<!DOCTYPE html>
 <html lang="en" class="dark">
@@ -205,11 +205,11 @@ export default async (request: Request, context: Context) => {
 
       // Generate HTML with meta tags
       const html = generateMetaHTML({
-        title: `Global Consensus: ${target.name} | FVS Scoring System`,
-        description: `Network consensus reveals forecast patterns across all verified audit nodes. ${target.name} - FVS Score: ${score}/100`,
+        title: `Global Consensus: ${target.name} | Forecast Audit`,
+        description: `Network consensus reveals forecast patterns across all verified audit nodes. ${target.name} - Score: ${score}/100`,
         url: `${url.origin}${pathname}`,
         image: ogImageUrl,
-        imageAlt: `FVS Global Consensus: ${target.name} - Score ${score}/100`,
+        imageAlt: `Global Consensus: ${target.name} - Score ${score}/100`,
         type: 'article',
       });
 
@@ -245,8 +245,8 @@ export default async (request: Request, context: Context) => {
 
       // Generate HTML with meta tags
       const html = generateMetaHTML({
-        title: `Audit Target: ${target.case_id || target.name} | FVS Scoring System`,
-        description: `Submit forecast audit scores using the FVS 10-metric framework. Evaluate specificity, attribution, actionability, and forecast utility for ${target.name}.`,
+        title: `Audit Target: ${target.case_id || target.name} | Forecast Audit`,
+        description: `Submit forecast audit scores using the 10-metric framework. Evaluate specificity, attribution, actionability, and forecast utility for ${target.name}.`,
         url: `${url.origin}${pathname}`,
         image: ogImageUrl,
         imageAlt: `Audit Target: ${target.case_id || target.name}`,

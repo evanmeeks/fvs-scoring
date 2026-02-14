@@ -60,7 +60,7 @@ const Header = ({ user, isAdmin, isContributor, onLogin, onLogout, onOpenTargetE
                   FVS<span className="text-ops-accent">_</span>SCORING
                 </h1>
                 <p className="text-ops-text-dim mt-2 max-w-2xl text-sm md:text-base">
-                  Forecast Verification Scoring System.
+                  Forecast Audit.
                   <span className="block mt-1 opacity-70">
                     Verification and evaluation for forecasts in media claims and prediction markets.
                   </span>
