@@ -34,7 +34,7 @@ jobs:
           version: latest
 
       - name: Link Supabase Project
-        run: supabase link --project-ref iurzpjeubpbcbxhydlud
+        run: supabase link --project-ref phgvqwdpqsovzzeepjyo
         env:
           SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
 
