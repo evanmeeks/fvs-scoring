@@ -153,3 +153,6 @@ backup/*
 .DS_Store
 .vercel
 .env*.local
+
+backups/
+perf-traces/
