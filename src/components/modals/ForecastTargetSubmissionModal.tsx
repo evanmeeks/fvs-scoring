@@ -137,7 +137,7 @@ export function ForecastTargetSubmissionModal() {
               value={formData.targetName}
               onChange={handleChange}
               className="w-full bg-background border border-border text-white p-2.5 rounded text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all font-mono"
-              placeholder="e.g., Grusch_T_2024"
+              placeholder="e.g., Fed_Rate_Q1_2024"
             />
           </div>
 
@@ -243,7 +243,7 @@ export function ForecastTargetSubmissionModal() {
               value={formData.primarySource}
               onChange={handleChange}
               className="w-full bg-background border border-border text-white p-2.5 rounded text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
-              placeholder="e.g., David Grusch, Eric Davis, etc."
+              placeholder="e.g., Nate Silver, Philip Tetlock, etc."
             />
           </div>
 

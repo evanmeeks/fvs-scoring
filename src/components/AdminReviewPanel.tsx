@@ -609,7 +609,7 @@ const AdminReviewPanel = ({
                           value={targetId}
                           onChange={(e) => setTargetId(e.target.value)}
                           className="w-full bg-background border border-border text-white p-2.5 rounded text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all font-mono"
-                          placeholder="e.g., grusch-2024"
+                          placeholder="e.g., fed-rate-2024"
                         />
                       </div>
                     )}
