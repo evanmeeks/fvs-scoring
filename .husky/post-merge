@@ -1,0 +1,6 @@
+changed_files=$(git diff-tree -r --name-only ORIG_HEAD HEAD)
+if echo "$changed_files" | grep -q "^supabase/migrations/"; then
+  echo "⚡ Migrations changed — regenerating Supabase types..."
+  npm run db:types
+  echo "✅ Types regenerated at src/types/supabase.ts"
+fi

@@ -1,0 +1,30 @@
+name: Check Migrations
+on: [push, pull_request]
+jobs:
+    check:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Validate migration file naming
+              run: |
+                  echo "✅ Checking migration file naming conventions..."
+                  
+                  # Check that all .sql files in migrations folder follow the naming pattern
+                  cd supabase/migrations
+                  
+                  for file in *.sql; do
+                    # Skip if no .sql files exist
+                    [ -e "$file" ] || continue
+                    
+                    # Check if filename matches pattern: YYYYMMDDHHMMSS_description.sql
+                    if [[ ! "$file" =~ ^[0-9]{14}_[a-z0-9_]+\.sql$ ]]; then
+                      echo "❌ Invalid migration filename: $file"
+                      echo "   Migration files must follow pattern: YYYYMMDDHHMMSS_description.sql"
+                      exit 1
+                    fi
+                    
+                    echo "✅ Valid: $file"
+                  done
+                  
+                  echo ""
+                  echo "✅ All migration files follow correct naming convention!"
