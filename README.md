@@ -4,11 +4,9 @@ A collaborative platform for forecast verification and evaluation of media claim
 
 **Live:** [forecastaudit.pro](https://forecastaudit.pro)
 
-## Demo Access
+## Demo access
 
-| Role  | Email                    | Password   |
-|-------|--------------------------|------------|
-| Admin | `demo@forecastaudit.pro` | `demo1234` |
+A demo account exists for reviewers. Credentials are not published in this repository; request access and they will be provided directly.
 
 ## Tech Stack
 
